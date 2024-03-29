@@ -13,6 +13,7 @@ class Site(models.Model):
 class Room(models.Model):
     name = models.CharField(max_length=100)
     site = models.ForeignKey(Site, on_delete=models.CASCADE)
+    size = models.IntegerField(default=1)
 
     def __str__(self):
         return self.name
