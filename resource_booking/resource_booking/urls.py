@@ -3,7 +3,7 @@ from django.urls import include, path
 
 from rest_framework import routers
 
-from resource_booking.booking import views as booking_views
+from booking import views as booking_views
 from users import views as user_views
 
 router = routers.DefaultRouter()
