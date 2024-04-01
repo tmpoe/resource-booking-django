@@ -4,19 +4,15 @@ from booking import views
 
 from rest_framework import routers
 
-from booking import views as booking_views
-from users import views as user_views
+from booking import views
 
 
 router = routers.DefaultRouter()
-router.register(r'users', user_views.UserViewSet)
-router.register(r'groups', user_views.GroupViewSet)
-router.register(r'rooms', booking_views.RoomViewSet)
-router.register(r'sites', booking_views.SiteViewSet)
-router.register(r'bookings', booking_views.BookingViewSet)
+router.register(r'sites', views.SiteViewSet, basename='site')
 
 urlpatterns = [
     path('', views.index, name="index"),
     path('', include(router.urls)),
-    
+    path('api/booking', views.BookingViewSet.as_view(), name='booking'),
+    path('api/room', views.RoomViewSet.as_view(), name='room'),
 ]
