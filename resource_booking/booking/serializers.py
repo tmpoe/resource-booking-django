@@ -23,6 +23,7 @@ class BookingSerializer(serializers.HyperlinkedModelSerializer):
         
 
 class RoomSerializer(serializers.HyperlinkedModelSerializer):  
+    
     class Meta:
         model = Room
         fields = ['name', 'site', 'size']
