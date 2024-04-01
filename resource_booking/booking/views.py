@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from requests import Response
+from rest_framework.response import Response
 from rest_framework import permissions, viewsets, views, authentication
 
 from booking.serializers import BookingSerializer, RoomSerializer, SiteSerializer
@@ -21,7 +21,7 @@ class BookingViewSet(views.APIView):
     
     def get(self, request, format=None):
         bookings = Booking.objects.all()
-        serializer = BookingSerializer(bookings, many=True)
+        serializer = BookingSerializer(bookings, many=True,  context={'request': request})
         return Response(serializer.data)
     
     
@@ -35,7 +35,8 @@ class RoomViewSet(views.APIView):
     
     def get(self, request, format=None):
         rooms = Room.objects.all()
-        serializer = RoomSerializer(rooms, many=True)
+        serializer = RoomSerializer(rooms, many=True, context={'request': request})
+        print(serializer.data)
         return Response(serializer.data)
     
     
